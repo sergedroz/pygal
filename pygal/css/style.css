@@ -121,8 +121,8 @@
 }
 
 {{ id }}.map-element {
-  fill: {{ style.foreground }};
-  stroke: {{ style.foreground_dark }} !important;
+  fill: {{ style.map_foreground }};
+  stroke: {{ style.map_foreground_dark }} !important;
   opacity: .9;
   stroke-width: 3;
   -webkit-transition: 250ms;

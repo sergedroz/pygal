@@ -45,6 +45,8 @@ class Style(object):
             stroke_style='round',
             stroke_dasharray=(0, 0),
             transition='250ms',
+            map_foreground='',
+            map_foreground_dark='',
             colors=(
                 '#ff5995', '#b6e354', '#feed6c', '#8cedff', '#9e6ffe',
                 '#899ca1', '#f8f8f2', '#bf4646', '#516083', '#f92672',
@@ -63,6 +65,14 @@ class Style(object):
         self.stroke_dasharray = stroke_dasharray
         self.transition = transition
         self.colors = colors
+        if map_foreground:
+            self.map_foreground = map_foreground
+        else:
+            self.map_foreground = foreground
+        if map_foreground_dark:
+            self.map_foreground_dark = map_foreground_dark
+        else:
+            self.map_foreground_dark = foreground_dark
 
         self.validate_stroke_values()
 
