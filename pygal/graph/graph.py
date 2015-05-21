@@ -278,7 +278,9 @@ class Graph(BaseGraph):
     def _legend(self):
         """Make the legend box"""
         if not self.show_legend:
-            return
+            return   
+        if self.reverse_legend:
+            self._legends = self._legends[::-1]
         truncation = self.truncate_legend
         if self.legend_at_bottom:
             x = self.margin_box.left + self.spacing
@@ -336,14 +338,18 @@ class Graph(BaseGraph):
                 transform='translate(%d, %d)' % (x, y))
 
         for (global_serie_number, (i, (title, is_secondary))) in gen:
-
+             
+            if self.reverse_legend:
+                 pos = len( self._legends ) + len( self._secondary_legends ) - global_serie_number - 1
+            else:
+                 pos = global_serie_number   
             col = i % cols
             row = i // cols
 
             legend = self.svg.node(
                 secondary_legends if is_secondary else legends,
                 class_='legend reactive activate-serie',
-                id="activate-serie-%d" % global_serie_number)
+                id="activate-serie-%d" % pos )
             self.svg.node(
                 legend, 'rect',
                 x=col * x_step,
@@ -354,7 +360,7 @@ class Graph(BaseGraph):
                 width=self.legend_box_size,
                 height=self.legend_box_size,
                 class_="color-%d reactive" % (
-                    global_serie_number % len(self.style.colors))
+                    pos % len(self.style.colors))
             )
 
             if isinstance(title, dict):

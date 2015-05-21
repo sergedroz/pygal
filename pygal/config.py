@@ -218,7 +218,9 @@ class Config(CommonConfig):
     stack_from_top = Key(
         False, bool, "Look", "Stack from top to zero, this makes the stacked "
         "data match the legend order")
-
+    reverse_legend = Key(
+        False, bool, "Look", "Reverse the order in the legend "
+        "data match the legend order")
     spacing = Key(
         10, int, "Look",
         "Space between titles/legend/axes")
